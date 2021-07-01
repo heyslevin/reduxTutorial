@@ -14,15 +14,10 @@ export const AddPostForm = () => {
   const onContentChange = (e) => setContent(e.target.value)
 
   const onSavePostClicked = () => {
-    console.log(postAdded())
     if (title && content) {
-      dispatch(
-        postAdded({
-          id: nanoid(),
-          title: title,
-          content: content,
-        })
-      )
+      dispatch(postAdded(title, content))
+      setTitle('')
+      setContent('')
     }
   }
 

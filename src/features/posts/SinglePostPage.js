@@ -1,7 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-export const SinglePostPage = ({ match }) => {
+export const SinglePostPage = (props) => {
+  console.log(props)
+  let { match } = props
   const { postId } = match.params
 
   const post = useSelector((state) =>
@@ -21,6 +24,9 @@ export const SinglePostPage = ({ match }) => {
       <article className="post">
         <h2>{post.title}</h2>
         <p className="post-content">{post.content}</p>
+        <Link to={`/editPost/${post.id}`} className="button muted-button">
+          Edit Post
+        </Link>
       </article>
     </section>
   )
