@@ -2,9 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-export const SinglePostPage = (props) => {
-  console.log(props)
-  let { match } = props
+import { PostAuthor } from './PostAuthor'
+import { ReactionButtons } from './ReactionButtons'
+
+export const SinglePostPage = ({ match }) => {
   const { postId } = match.params
 
   const post = useSelector((state) =>
@@ -24,6 +25,10 @@ export const SinglePostPage = (props) => {
       <article className="post">
         <h2>{post.title}</h2>
         <p className="post-content">{post.content}</p>
+        <p>
+          <PostAuthor userId={post.user} />
+        </p>
+        <ReactionButtons post={post} />
         <Link to={`/editPost/${post.id}`} className="button muted-button">
           Edit Post
         </Link>
